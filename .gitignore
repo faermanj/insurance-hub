@@ -1,0 +1,9 @@
+# General
+.env*
+.envrc*
+*.local.*
+*-local
+
+# Java
+settings.xml
+target

@@ -1,0 +1,14 @@
+processes:
+  ih-vdn-dev:
+    command: ./scripts/dev-start.sh
+    working_dir: .
+    # Quarkus dev mode is long-lived; bring it back if it crashes.
+    availability:
+      restart: on_failure
+      backoff_seconds: 5
+    # Mark the service ready once Quarkus answers on its HTTP port.
+    readiness_probe:
+      http_get:
+        host: 127.0.0.1
+        port: 8080
+        path: /q/health/ready
